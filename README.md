@@ -26,7 +26,7 @@ RAG（Retrieval-Augmented Generation）は、質問に関連する情報を外�
   <img src="./images/yokohama-rag-demo.gif" alt="横浜市 建築規制 RAG の質問・回答デモ" width="100%">
 </p>
 
-質問の入力から回答、出典、Top-3 の参照 Chunk を確認するまでの UI フローです。現在の Streamlit UI はモックデータを使用したプロトタイプであり、実 RAG バックエンドとの統合は今後の対応です。
+Streamlit Demo: [https://02archi-projectrag-based-app-system.streamlit.app/](https://02archi-projectrag-based-app-system.streamlit.app/)
 
 ## プロジェクト概要
 
@@ -264,13 +264,13 @@ streamlit run app\streamlit_app.py
 
 ## Limitations
 
-- Knowledge Base は横浜市の地区計画 5 文書に限定されています。
-- JSON 全件走査によるベクトル検索は現在の小規模データには適していますが、大規模運用向けではありません。
-- Retrieval 評価は20問であり、より多様な表現や難易度を含む追加評価が必要です。
-- LLM の回答品質、引用の利用状況、幻覚率は Retrieval 精度とは別に評価する必要があります。
-- `Citation` は現在 Top-3 すべてから生成され、回答本文が実際に利用した参照元だけを自動選別する機能はありません。
-- Streamlit UI はモックベースで、実 RAG バックエンドとは未接続です。
-- 住所や座標から該当地区計画を判定する GIS 検索は実装していません。
+- 検索できる資料は、横浜市の地区計画 5 文書のみです。
+- 現在の検索方法は、データが増えると処理に時間がかかる可能性があります。
+- 検索精度の確認に使った質問は 20 問だけなので、さらに多くの質問で確認する必要があります。
+- 回答の正しさや、示した根拠が回答内容と合っているかについては、まだ十分に評価できていません。
+- 出典には検索結果の上位 3 件を表示します。回答作成に実際に使われた出典だけを選ぶ機能はありません。
+- Streamlit の画面はモックデータを表示する試作版で、実際の RAG システムとはまだ接続していません。
+- 住所や座標を入力して、該当する地区計画を自動で探すことはできません。
 
 ## Future Work
 
@@ -282,10 +282,6 @@ streamlit run app\streamlit_app.py
 - 大規模 corpus 向け Vector Database への移行
 - 住所・地番・GIS 情報からの適用規制検索
 - Demo 画像、アーキテクチャ図、デプロイ環境の整備
-
-## Origin / Attribution
-
-本プロジェクトは、[miracle-huang/Project_RAG-based-QA-System](https://github.com/miracle-huang/Project_RAG-based-QA-System) の実装を学習用の出発点として使用し、日本語建築規制検索向けに再設計・拡張したものです。原プロジェクトと本プロジェクトの主な差分、およびライセンスに関する注意事項は、[docs/reference_README.md](./docs/reference_README.md) に記載しています。
 
 ## References
 
